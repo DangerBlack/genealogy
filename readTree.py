@@ -13,6 +13,20 @@ def search(fullname, person):
             return p
     return None
 
+
+def getAncestor(ancestor,person):
+    a = None
+    if(ancestor!=""):
+        a = search(ancestor,person)
+        if a == None:
+            name = ancestor.split(' ')
+            if(len(name)>1):
+                a = Gents(name[0],name[1],"?",None,None)
+            else:
+                a = Gents("",ancestor,"?",None,None)
+            person.append(a)
+    return a
+
 def readFullTree():
     surdm = {}
     surdf = {}
@@ -30,14 +44,14 @@ def readFullTree():
 
         print(len(surdm))
         for ancestor in surdm:
-            a = search(ancestor,person)
-            if a != None:
+            a = getAncestor(ancestor,person)
+            if(a!=None):
                 for p in surdm[ancestor]:
                     p.father = a
                     a.childrens.append(p)
         for ancestor in surdf:
-            a = search(ancestor,person)
-            if a != None:
+            a = getAncestor(ancestor,person)
+            if(a!=None):
                 for p in surdf[ancestor]:
                     p.mother = a
                     a.childrens.append(p)

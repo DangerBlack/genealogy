@@ -5,7 +5,7 @@ class Gents:
     padding = 50
 
 
-    rainbows = ["red","green","orangered","turquoise","darkviolet","slateblue","sienna","silver"]
+    rainbows = ["red","green","orangered","turquoise","darkviolet","slateblue","sienna","silver","lightsteelblue","darkkhaki","coral","teal"]
 
     def __init__(self,name,surname,date,father,mother):
         self.name = name
@@ -61,3 +61,4 @@ class Gents:
             draw.line(((minxc,y0-spadding),(maxxc,y0-spadding)),fill=color) #riga orizzontale
             draw.line(((fxc,y0-self.padding),(fxc,y0-spadding)),fill=color) #riga basso mamma
             draw.line(((mxc,y0-self.padding),(mxc,y0-spadding)),fill=color) #riga basso papa
+            draw.rectangle((( x0, y0), (x0 + self.dx, y0 + self.dy)), outline=color)
