@@ -42,11 +42,11 @@ def generateWeightTree(persons):
     maxSlot = 0
     for level in slots:
         i = 0
-        print("prima della cura "+str(level))
-        printAll(slots[level])
+        #print("prima della cura "+str(level))
+        #printAll(slots[level])
         slots[level] = sorted(slots[level],key=familyOrder)
-        print("dopo la cura "+str(level))
-        printAll(slots[level])
+        #print("dopo la cura "+str(level))
+        #printAll(slots[level])
         for p in slots[level]:
             p.slots = len(slots[level])
             p.slot = p.slot*p.slots
@@ -58,8 +58,8 @@ def generateWeightTree(persons):
         #print(str(level)+" "+str(len(slots[level])))
 
 
-    for p in marked:
-        print(p)
+    #for p in marked:
+        #print(p)
 
     return [marked,maxSlot,maxLevel]
 

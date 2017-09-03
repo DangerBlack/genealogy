@@ -56,8 +56,8 @@ def readFullTree():
                     p.mother = a
                     a.childrens.append(p)
 
-        for p in person:
-            print(p)
+        #for p in person:
+            #print(p)
 
     return person
 

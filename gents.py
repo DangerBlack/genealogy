@@ -2,10 +2,11 @@ from PIL import Image, ImageFont, ImageDraw, ImageEnhance
 import random as r
 
 class Gents:
-    padding = 50
+    padding = 100
 
 
     rainbows = ["red","green","orangered","turquoise","darkviolet","slateblue","sienna","silver","lightsteelblue","darkkhaki","coral","teal"]
+    font = ImageFont.truetype("/usr/share/fonts/truetype/liberation/Liberation/LiberationSerif-Regular.ttf",15)
 
     def __init__(self,name,surname,date,father,mother):
         self.name = name
@@ -15,8 +16,8 @@ class Gents:
         self.mother = mother
         #self.siblings = siblings
         self.childrens = []
-        self.dx = (len(name)+len(surname))*12
-        self.dy = 35
+        self.dx = self.font.getsize(self.getFullName())[0]+20
+        self.dy = 55
         self.level = 0
         self.slots = 1
         self.slot = 0
@@ -42,12 +43,17 @@ class Gents:
     def addOnDraw(self,draw,l):
         slotsize = l/self.slots
         x0 = slotsize*self.slot+slotsize/2 - self.dx/2
-        y0 = self.level*(35 + self.padding)
+        y0 = self.level*(self.dy + self.padding)
         draw.rectangle((( x0, y0), (x0 + self.dx, y0 + self.dy)), outline="black")
-        draw.text((x0 +10, y0 + 10), self.name+" "+self.surname, font=ImageFont.truetype("/usr/share/fonts/truetype/liberation/Liberation/LiberationSerif-Regular.ttf",15),fill="black")
+        draw.text((x0 + 10, y0 + 10), self.getFullName(), font=self.font,fill="black")
+
+        datepadd = self.dx/2 - self.font.getsize(self.date)[0]/2 -10
+        draw.text((x0 + 10 + datepadd, y0 + 10 + 15 + 2), self.date, font=self.font,fill="black")
 
         if self.father != None and self.mother != None:
-            spadding = self.padding/2 + self.father.slot*2
+            quantum = self.padding/14
+
+            spadding =  self.father.slot*quantum+quantum #self.padding/2 + self.father.slot*quantum
             color = self.rainbows[self.father.slot % len(self.rainbows)]
             xc = slotsize*self.slot + slotsize/2
             draw.line(((xc,y0-spadding),(xc,y0)),fill=color) #riga alto figlio
