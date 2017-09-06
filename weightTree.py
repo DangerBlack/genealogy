@@ -1,6 +1,10 @@
 from gents import Gents
 from readTree import *
 
+def printAll(persons):
+    for p in persons:
+        print("*"+str(p)+"*")
+
 def mark(p,level):
     if(p!=None):
         if(p.level=="x"):
@@ -17,10 +21,6 @@ def mark(p,level):
 def familyOrder(item):
     return item.surname+" "+item.name
 
-def printAll(persons):
-    for p in persons:
-        print("*"+str(p)+"*")
-
 def generateWeightTree(persons):
     for p in persons:
         p.level = "x"
@@ -29,16 +29,22 @@ def generateWeightTree(persons):
     for p in persons:
         if(p.level != "x"):
             marked.append(p)
+        #else:
+        #    print("Scarto:"+str(p)) #TODO remove print
 
     slots = {}
     maxLevel = 0
+    minLevel = 0
     for p in marked:
         add(slots,p.level,p)
         if(p.level>maxLevel):
             maxLevel = p.level #TODO controllo per livelli negativi
+        if(p.level<minLevel):
+            minLevel = p.level
 
+    print("MinL:"+str(minLevel))
     for p in marked:
-        p.level = maxLevel-p.level+1
+        p.level = (maxLevel+minLevel)-(p.level+1)+1
     maxSlot = 0
     for level in slots:
         i = 0
@@ -61,7 +67,7 @@ def generateWeightTree(persons):
     #for p in marked:
         #print(p)
 
-    return [marked,maxSlot,maxLevel]
+    return [marked,maxSlot,maxLevel,minLevel]
 
 
 def readAndBuildTree():

@@ -19,7 +19,7 @@ def getAncestor(ancestor,person):
     if(ancestor!=""):
         a = search(ancestor,person)
         if a == None:
-            name = ancestor.split(' ')
+            name = ancestor.split(' ',1)
             if(len(name)>1):
                 a = Gents(name[0],name[1],"?",None,None)
             else:
