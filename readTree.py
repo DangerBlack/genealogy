@@ -27,11 +27,11 @@ def getAncestor(ancestor,person):
             person.append(a)
     return a
 
-def readFullTree():
+def readFullTree(filename):
     surdm = {}
     surdf = {}
     person = []
-    with open('Genalogia.csv', 'rb') as csvfile:
+    with open(filename, 'rb') as csvfile:
         '''tr = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in tr:
                 print '****** '.join(row)'''

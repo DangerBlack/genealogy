@@ -34,7 +34,7 @@ def generateWeightTree(persons):
 
     slots = {}
     maxLevel = 0
-    minLevel = 0
+    minLevel = 1000
     for p in marked:
         add(slots,p.level,p)
         if(p.level>maxLevel):
@@ -42,9 +42,11 @@ def generateWeightTree(persons):
         if(p.level<minLevel):
             minLevel = p.level
 
+    print("MaxL:"+str(maxLevel))
     print("MinL:"+str(minLevel))
     for p in marked:
-        p.level = (maxLevel+minLevel)-(p.level+1)+1
+        #print(""+str(p.level)+" + "+str(abs(minLevel))+" = "+str(p.level+maxLevel)+" - "+str(maxLevel)+" - "+str(abs(minLevel))+" = "+str(-p.level+maxLevel-abs(minLevel)))
+        p.level = (maxLevel+abs(minLevel))-(p.level)#(maxLevel+abs(minLevel)+1)-(abs(p.level)+1)+1
     maxSlot = 0
     for level in slots:
         i = 0
@@ -70,6 +72,6 @@ def generateWeightTree(persons):
     return [marked,maxSlot,maxLevel,minLevel]
 
 
-def readAndBuildTree():
-    persons = readFullTree()
+def readAndBuildTree(filename):
+    persons = readFullTree(filename)
     return generateWeightTree(persons)
