@@ -1,6 +1,6 @@
 from PIL import Image, ImageFont, ImageDraw, ImageEnhance
 import random as r
-
+import re
 class Gents:
     padding = 100
 
@@ -11,6 +11,8 @@ class Gents:
     fontsm = ImageFont.truetype("res/DancingScript-Regular.ttf",12)
 
     def __init__(self,name,surname,date,father,mother):
+        name = re.sub(" $","",name)
+        surname = re.sub(" $","",surname)
         self.name = name
         self.surname = surname
         if("/" in date):
