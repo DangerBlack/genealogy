@@ -46,7 +46,7 @@ def generateWeightTree(persons):
     print("MinL:"+str(minLevel))
     for p in marked:
         #print(""+str(p.level)+" + "+str(abs(minLevel))+" = "+str(p.level+maxLevel)+" - "+str(maxLevel)+" - "+str(abs(minLevel))+" = "+str(-p.level+maxLevel-abs(minLevel)))
-        p.level = (maxLevel+abs(minLevel))-(p.level)#(maxLevel+abs(minLevel)+1)-(abs(p.level)+1)+1
+        p.level = (maxLevel+abs(minLevel))-(p.level+abs(minLevel)-1)#(maxLevel+abs(minLevel)+1)-(abs(p.level)+1)+1
     maxSlot = 0
     for level in slots:
         i = 0

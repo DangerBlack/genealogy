@@ -5,8 +5,8 @@ from weightTree import *
 
 
 
-#couple = readAndBuildTree('Genalogia.csv');
-couple = readAndBuildTree('targaryen.csv');
+couple = readAndBuildTree('Genalogia.csv');
+#couple = readAndBuildTree('targaryen.csv');
 
 persons = couple[0]
 maxS = couple[1]
@@ -21,7 +21,7 @@ m = 600
 temp = Gents(".",".",".",None,None)
 
 n = 200*maxS+200
-m = (35+temp.padding)*(maxL+abs(minL)+1)+200
+m = (45+temp.padding)*(maxL+abs(minL)+1)+200
 
 out_file = "save/out.png"
 source_img = Image.new('RGB', (n, m))
